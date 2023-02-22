@@ -6,12 +6,11 @@ RUN apt-get update && apt-get install -y \
   python3-pip \
   && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html \
+RUN pip install --upgrade jaxlib==0.3.25+cuda11.cudnn82 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html \
   && pip install -q \
-  git+https://github.com/borisdayma/dalle-mini.git \
-  git+https://github.com/patil-suraj/vqgan-jax.git
-
-RUN pip install jupyter
+  dalle-mini \
+  git+https://github.com/kkowalak/dalle-mini.git \
+  git+https://github.com/patil-suraj/vqgan-jax.git \
+  jax==0.3.25
 
 WORKDIR /workspace
-
